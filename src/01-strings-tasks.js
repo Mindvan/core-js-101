@@ -221,7 +221,7 @@ function getRectangleString(width, height) {
   arr[height - 1][0] = '└'; arr[height - 1][width - 1] = '┘';
 
   const resultArray = arr.map((row) => row.join(''));
-  return resultArray.join('\n');
+  return `${resultArray.join('\n')}\n`;
 }
 
 
