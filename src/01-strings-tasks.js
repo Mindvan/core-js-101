@@ -218,10 +218,10 @@ function getRectangleString(width, height) {
 
 
   arr[0][0] = '┌'; arr[0][width - 1] = '┐';
-  arr[height - 1][0] = '└'; arr[height - 1][width - 1] = '─┘';
+  arr[height - 1][0] = '└'; arr[height - 1][width - 1] = '┘';
 
   const resultArray = arr.map((row) => row.join(''));
-  return resultArray.join('');
+  return resultArray.join('\n');
 }
 
 
@@ -249,7 +249,6 @@ function encodeToRot13(str) {
   const chars = words.map((row) => row.split(''));
   const encoded = chars.map((row) => row.map((char) => {
     const index = input.indexOf(char);
-    console.log(index);
     return index !== -1 ? output[index] : char;
   }));
 
@@ -270,7 +269,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return typeof value === 'string';
+  return (value instanceof String) || (typeof value === 'string');
 }
 
 
@@ -304,7 +303,7 @@ function getCardId(value) {
     'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
     'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
 
-  return list.findIndex((x) => x === value)
+  return list.findIndex((x) => x === value);
 }
 
 
