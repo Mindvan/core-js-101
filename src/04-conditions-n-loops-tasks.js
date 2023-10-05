@@ -462,8 +462,7 @@ function getMatrixProduct(m1, m2) {
  * Function should return who is winner in the current position according to the game rules.
  * The result can be: 'X','0',undefined
  *
- * @param {array} position
- * @return {string}
+ * @return {boolean}
  *
  * @example
  *
@@ -483,9 +482,29 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ],       =>  undefined
  *    [    ,   ,    ]]
  *
+ * @param matrix
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(matrix) {
+  let checker = [];
+
+  for (let i = 0; i < matrix.length; i += 1) {
+    checker.push(matrix.map((x) => x[i]));
+    checker.push(matrix.map((x, index) => x[index]));
+    checker.push(matrix.map((x, index) => x[matrix.length - 1 - index]).reverse());
+    checker.push(matrix[i]);
+
+    for (let j = 0; j < checker.length; j += 1) {
+      if (checker[j].every((x, _, arr) => (x === arr[0])
+        && (x !== undefined))
+        && (checker[j].length === 3)) {
+        return checker[j][0];
+      }
+    }
+
+    checker = [];
+  }
+
+  return undefined;
 }
 
 
